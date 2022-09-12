@@ -1,17 +1,4 @@
-name: "Code Scanning - Action"
-- uses: github/codeql-action/init@v1
-with:
-    # Comma-separated list of packs to download
-    packs:
-  # Use these packs for JavaScript analysis
-      javascript:
-      - scope/js-pack1
-      - scope/js-pack2
-  # Use these packs for Java analysis
-    java:
-      - scope/java-pack1
-      - scope/java-pack2@v1.0.0
-      
+name: "Code Scanning - Action"      
 on:
   pull_request:
     branches: [main]
@@ -32,6 +19,19 @@ jobs:
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
+        with:
+            # Comma-separated list of packs to download
+            packs: scope/pack1,scope/pack2@1.2.3,scope/pack3@~1.2.3packs:
+            # Use these packs for JavaScript analysis
+                javascript:
+                - scope/js-pack1
+                - scope/js-pack2
+            # Use these packs for Java analysis
+            java:
+                - scope/java-pack1
+                - scope/java-pack2@v1.0.0
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
+  
+        
