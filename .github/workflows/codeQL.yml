@@ -1,9 +1,21 @@
 name: "Code Scanning - Action"
-
+- uses: github/codeql-action/init@v1
+with:
+    # Comma-separated list of packs to download
+    packs:
+  # Use these packs for JavaScript analysis
+      javascript:
+      - scope/js-pack1
+      - scope/js-pack2
+  # Use these packs for Java analysis
+    java:
+      - scope/java-pack1
+      - scope/java-pack2@v1.0.0
+      
 on:
   pull_request:
     branches: [main]
-
+  
 jobs:
   CodeQL-Build:
     runs-on: ubuntu-latest
@@ -13,7 +25,7 @@ jobs:
       security-events: write
       actions: read
       contents: read
-
+   
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
